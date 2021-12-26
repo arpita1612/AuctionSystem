@@ -1,0 +1,33 @@
+<mat-toolbar style="background-color: #854a10; color: white;">
+    <mat-toolbar-row>
+        <button fxShow.xs="false" fxShow.sm="false" fxShow.md="true" fxShow.lg="true" mat-button routerLink=""
+            routerLinkActive="active">
+            <img class="logo-img" src="assets/images/logo3.PNG">
+        </button>
+        <span class="example-spacer"></span>
+        <!-- <mat-form-field>
+            search &nbsp;&nbsp;&nbsp;<mat-icon >search</mat-icon><input matInput>
+        </mat-form-field> -->
+
+        <button fxShow.xs="true" fxShow.sm="true" fxShow.md="true" fxShow.lg="true" mat-button routerLink="/login"
+            routerLinkActive="active">
+            <mat-icon>account_circle</mat-icon>
+            login
+        </button>
+        <button fxShow.xs="true" fxShow.sm="true" fxShow.md="true" fxShow.lg="true" mat-button routerLink="/register"
+            routerLinkActive="active" style="color:white;">
+            <mat-icon> account_circle</mat-icon>
+            Register Account
+        </button>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+<br />
+<div>
+    <div fxLayout="row wrap" fxLayoutGap="7px">
+        <app-shared-product fxFlex.lg="24" fxFlex.md="32" fxFlex.sm="48" fxFlex.xs="48" *ngFor="let p of product"
+            [product]="p" role="home">
+        </app-shared-product>
+    </div>
+    <br>
+</div>

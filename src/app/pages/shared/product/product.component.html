@@ -1,0 +1,81 @@
+<!-- <p *ngIf="bidData.data.bidAmount > 0">
+        <span matBadge="1" matBadgeOverlap="false">bid</span>
+    </p> -->
+    <!-- <mat-card class="mat-example">
+    <mat-card-header>
+        <mat-card-title style="margin-top :15px;">{{product.productname}}</mat-card-title>
+    </mat-card-header>
+    <img width="100%" style="height: 300px !important;" src="http://localhost:3000/images/{{product._id}}.jpeg"  onError="this.src='assets/no-image.svg';">
+       
+    
+    <mat-card-content style="position:relative;">
+        <mat-card-subtitle>
+            <p>Description : {{product.productdiscription}}</p>
+        </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions style="padding: 10px;">
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'bidder'">
+            <button mat-raised-button style="background-color: #774524; color:white">Price
+                ${{product.productprice}}</button>
+            <button mat-raised-button *ngIf="role != 'home'" style="background-color: #774524; color:white"
+                (click)="opendialog(product)">Want to bid</button>
+
+            <button mat-raised-button *ngIf="role == 'home'" style="background-color: #774524; color:white"
+                (click)="onLogin()">Want to bid</button>
+        </div>
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'admin'">
+            <button mat-raised-button style="background-color: #774524; color:white" (click)="showdetail(product)">Show
+                Details</button>
+        </div>
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'auctioner'">
+            <button mat-raised-button style="background-color: #774524; color:white" (click)="showdetail(product)">Show
+                Details</button>
+        </div>
+        <mat-divider></mat-divider>
+        <div style="background-color: #774524; padding: 0px !important;">
+            <p style="color: white; text-align: center;"><b> {{product.bid}}</b></p>
+        </div>
+    </mat-card-actions>
+</mat-card> -->
+<mat-card class="example-card" style="width: 300px;margin: 40px 0px 0px 55px;" >
+    <mat-card-header>
+   
+      <mat-card-title style="margin-top :1px;margin-left: -17px; font-size: x-large; color: rgb(9, 97, 100);">{{product.productname}}</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <img width="100%" style="height: 300px !important;" src="http://localhost:3000/images/{{product._id}}.jpeg" alt="Photo of a Shiba Inu">
+    
+    <mat-card-content>
+        <br>
+        <p style="overflow-y: scroll; height: 80px;">Description : {{product.productdiscription}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'bidder'">
+            <button mat-raised-button style="background-color: #774524; color:white">Price
+                ${{product.productprice}}</button>&nbsp;
+            <button mat-raised-button *ngIf="role != 'home' && product.sold != true" style="background-color: #774524; color:white"
+                (click)="opendialog(product)">Want to bid</button>
+
+            <button mat-raised-button *ngIf="role == 'home'" style="background-color: #774524; color:white"
+                (click)="onLogin()">Want to bid</button>
+            
+                <div fxLayoutAlign="center center">
+                    <button mat-raised-button style="background-color: #774524; color:white" (click)="showdetail(product)">Show
+                        Details</button>
+                </div>
+        </div>
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'admin'">
+            <button mat-raised-button style="background-color: #774524; color:white" (click)="showdetail(product)">Show
+                Details</button>
+        </div>
+        <div fxLayoutAlign="center center" *ngIf="showChip == 'auctioner'">
+            <button mat-raised-button style="background-color: #774524; color:white" (click)="showdetail(product)">Show
+                Details</button>
+        </div>
+        <br>
+        <mat-divider></mat-divider>
+        <div style="background-color: #774524; height:30px;margin-bottom: 7px">
+            <p style="color: white; text-align: center; padding-top: 6px; ;">{{product.bid}}</p>
+        </div>
+    </mat-card-actions>
+  </mat-card>

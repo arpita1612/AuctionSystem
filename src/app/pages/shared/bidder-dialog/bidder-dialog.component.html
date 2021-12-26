@@ -1,0 +1,44 @@
+<h1 mat-dialog-title style="text-align: center;">
+    <b>Enter bid details </b>
+</h1>
+<!-- <p>{{this.data.productprice}}</p> -->
+<div mat-dialog-content>
+    <form [formGroup]="fgBid" fxLayout="column" class="box">
+        <mat-form-field>
+            <input matInput placeholder="Enter bidder name" formControlName="name" required>
+            <mat-error
+                *ngIf="fgBid.controls['name'].invalid && (fgBid.controls['name'].dirty || fgBid.controls['name'].touched)"
+                class="alert" style="margin: 0px !important;padding: 0px;">
+                <mat-error *ngIf="fgBid.controls['name'].errors ?fgBid.controls['name'].errors.required : '' ">
+                    name is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{this.data.productprice}}" type="number" class="example-right-align"
+                formControlName="bidAmount">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-error
+                *ngIf="fgBid.controls['bidAmount'].invalid && (fgBid.controls['bidAmount'].dirty || fgBid.controls['bidAmount'].touched)"
+                class="alert" style="margin: 0px !important;padding: 0px;">
+                <mat-error
+                    *ngIf="fgBid.controls['bidAmount'].errors ? fgBid.controls['bidAmount'].errors.required : '' ">
+                    bidAmount is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Comment" formControlName="comment">
+        </mat-form-field>
+
+        <p *ngIf="errMsg" style="color: red; padding: 0px;margin: 0px;">{{errMsg}}</p>
+
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+            <button mat-flat-button style="background-color: #005773; color: white;" [disabled]="!fgBid.valid"
+                (click)="submit()">Submit</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,227 @@
+<!-- <div class="biddar-container">
+    <mat-toolbar style="color: #53341f;">
+        <mat-toolbar-row>
+            <span>Biddar</span>
+            <button mat-button>My Products</button>
+            <span class="example-spacer"></span>
+            <span>
+                <button mat-icon-button (click)="editUser()">
+                    <mat-icon>account_circle</mat-icon>Profile
+                </button> &nbsp;&nbsp;&nbsp;
+                <button mat-icon-button>
+                    <mat-icon style="color: #FFD700;">attach_money</mat-icon><b>250</b>
+                </button> &nbsp;&nbsp;
+                <button mat-icon-button (click)="logout()">
+                    <mat-icon>power_settings_new</mat-icon>Logout
+                </button>
+            </span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 10px;"
+    *ngIf="showForm">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Edit your Account Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="editBidder" fxLayout="column">
+                <h4 class="group-heading">Account Details</h4>
+                <mat-form-field>
+                    <input matInput placeholder="name" value="{{userData.name}}" formControlName="name" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select" formControlName="role" value="{{userData.role}}">
+                        <mat-option value="auctioner">Auctionar</mat-option>
+                        <mat-option value="bidder">Bidder</mat-option>
+                        <mat-option value="admin">Admin</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field  >
+                    <input matInput placeholder="Username" formControlName="username" value="{{userData.username}}"
+                        required>
+                </mat-form-field>
+
+                <h4 class="group-heading">Personal Details</h4>
+                <mat-form-field  >
+                    <input matInput placeholder="Email ID" formControlName="email" value="{{userData.email}}" required>
+                </mat-form-field>
+
+                <mat-form-field  >
+                    <input matInput placeholder="Address" formControlName="address" value="{{userData.address}}"
+                        required>
+                </mat-form-field>
+
+                <mat-radio-group formControlName="gender" value="{{userData.gender}}" required>
+                    <label>Gender</label><br />
+                    <mat-radio-button value="male">Male</mat-radio-button> &nbsp;
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB"
+                        value="{{userData.DOB}}">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field  >
+                    <span matPrefix>+91 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Telephone" formControlName="mobileNumber"
+                        value="{{userData.mobileNumber}}" required>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+                    <button mat-flat-button style="color: #53341f;" [disabled]="!editBidder.valid" (click)="onUpdate()">
+                        Update Details</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div fxLayout="row wrap" style="margin: 7px 7px 7px 7px;" *ngIf="!showForm">
+    <app-shared-product fxFlex.lg="24" fxFlex.md="24" fxFlex.sm="48" fxFlex.xs="85" *ngFor="let p of product"
+        [product]="p" role="bidder">
+    </app-shared-product>
+</div> -->
+
+<mat-sidenav-container class="container-sidenav" style="width: 100%; background-color: whitesmoke;">
+  <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top" style="background-color: whitesmoke;">
+    <div class="my-2" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div class="with-bg"></div>
+      <div>
+        <a style="text-align: center;">
+          <h3 style="color: #3d2813; font-size: 30px; margin: 13px;">Bidder</h3>
+          <!-- <img class="logo-img" src="assets/images/new-logo.jpeg"
+                        style="margin: 2px; padding: 1px; object-fit: cover;"> -->
+        </a>
+      </div>
+    </div>
+    <div class="mt-3">
+      <mat-accordion multi="true" [displayMode]="displayMode">
+        <mat-nav-list (click)="getMyProducts()">
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #53341f;" matPrefix>monetization_on</mat-icon>&nbsp;
+            My Purchase
+          </a>
+        </mat-nav-list>
+        <mat-nav-list (click)="getAllProducts()">
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #53341f;" matPrefix>shopping_basket</mat-icon>&nbsp;
+            All Products
+          </a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #9e7230;">attach_money</mat-icon>&nbsp;<b>My Coins : {{userData.bidcoin}}</b>
+          </a>
+        </mat-nav-list>
+      </mat-accordion>
+
+      <mat-nav-list>
+        <a mat-list-item class="ml-2" style="font-size:15px;" (click)="logout()">
+          <mat-icon color="warn" matPrefix>power_settings_new</mat-icon>&nbsp;Logout
+        </a>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="container1">
+    <span class="example-spacer"></span>
+    <mat-toolbar style="background-color: #854a10;">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <!-- <button mat-icon-button style="color: white;">
+          <mat-icon style="color: #FFD700;">attach_money</mat-icon>
+          <b>250</b>
+        </button> &nbsp;&nbsp; -->
+        <span>
+          <button mat-icon-button (click)="editUser()" style="background-color: #854a10; color: white;">
+            <mat-icon>account_circle</mat-icon> Profile
+          </button> &nbsp; &nbsp;&nbsp;&nbsp;
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+
+    <div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 10px;"
+      *ngIf="showForm">
+      <mat-card class="mat-elevation-z24">
+        <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title>
+            <h4 style="font-size: xx-large; margin-top: 10px;margin-bottom: 30px; color: #075844;">Edit your Account
+              Details</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="editBidder" fxLayoutAlign="center center" fxLayout="column">
+            <h4 class="group-heading" style="width: 400px; height: 25px;">Account Details</h4>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="name" value="{{userData.name}}" formControlName="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <mat-select placeholder="Select" formControlName="role" value="{{userData.role}}">
+                <mat-option value="bidder">Bidder</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="Username" formControlName="username" value="{{userData.username}}" required>
+            </mat-form-field>
+
+            <h4 class="group-heading" style="width: 400px; height: 25px;">Account Details</h4>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="Email ID" formControlName="email" value="{{userData.email}}" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="Address" formControlName="address" value="{{userData.address}}" required>
+            </mat-form-field>
+
+            <mat-radio-group formControlName="gender" value="{{userData.gender}}" required>
+              <label style=" font-size:larger; left: 45px;  position: absolute;">Gender</label>
+              <mat-radio-button value="male">Male</mat-radio-button> &nbsp;
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB"
+                value="{{userData.DOB}}">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <span matPrefix>+91 &nbsp;</span>
+              <input type="tel" matInput placeholder="Telephone" formControlName="mobileNumber"
+                value="{{userData.mobileNumber}}" required>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+
+            <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+              <button mat-flat-button style="background-color: #854a10; color: white; font-size: x-large;"
+                [disabled]="!editBidder.valid" (click)="onUpdate()">
+                Update Bidder</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="7px" *ngIf="!showForm && editBidder">
+      <app-shared-product fxFlex.lg="32" fxFlex.md="32" fxFlex.sm="48" fxFlex.xs="48" *ngFor="let p of product"
+        [product]="p" role="bidder">
+      </app-shared-product>
+  
+    </div>
+      <br>
+  </mat-sidenav-content>
+</mat-sidenav-container>

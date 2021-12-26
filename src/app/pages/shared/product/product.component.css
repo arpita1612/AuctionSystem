@@ -1,0 +1,76 @@
+
+/* .mat-example{
+  height: 50px;
+  max-width: 400px;  
+} */
+/* 
+.circle {
+  object-fit : cover;
+  width:"100%";
+  height:"auto"
+} */
+/* .example-card {
+  max-width: 400px;
+} */
+
+/* .example-header-image {
+  background-image: url('http://localhost:3000/images/{{product._id}}.jpeg');
+  background-size: cover;
+} */
+
+/* .mat-card{
+  margin: 2px;
+  margin-top: 10px;
+  padding: 0px;
+  cursor: pointer;
+  max-width: 400px;
+} */
+/* .user-info{
+  position: absolute;
+  bottom: 0px;
+  color:white;
+  left:0px;
+  right: 0px;
+  padding: 6px;
+}
+.user-info mat-card-subtitle{
+  color:silver;
+}
+.top-right{
+  position: absolute;
+  top: 4px;
+  right: 5px;
+}
+.bg-online{
+  background-color: rgba(3, 172, 45, 0.6);
+}
+.bg-offline{
+  background-color: rgba(66, 66, 66, 0.6);
+}
+.mat-card-subtitle, .mat-card-title {
+  margin: 2px;
+}
+@media(max-width:620px){
+  .mat-card-title{
+    font-size: 16px !important;
+  }
+}
+.title{
+  padding: 2px;
+  font-weight: bold;
+}
+.footer{
+  background-color: white;
+}
+
+.top-left{
+  background-color: white;
+  position: absolute;
+  top:5px;
+  left: 5px;
+} mat-chip {
+  max-width: 400px;
+} 
+mat-chip {
+  max-width: 200px;
+} */

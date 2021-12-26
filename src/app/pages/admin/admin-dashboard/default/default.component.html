@@ -1,0 +1,95 @@
+<div fxLayout="row">
+  <div class="mat-example">
+    <div fxLayout="row">
+
+      <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(53, 134, 107, 0.644)">
+        <mat-card class="example-card"
+          style="background-color: rgb(76, 146, 123);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white; font-size: large;margin-top: 7px;">Total Bidder : {{bCount}}</h4>
+        </mat-card>
+      </mat-card>
+
+      <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(53, 134, 127, 0.644);">
+        <mat-card class="example-card"
+          style="background-color: rgb(53, 134, 127);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white; font-size: large;margin-top: 7px;">Total Auctioner : {{aCount}} </h4>
+        </mat-card>
+      </mat-card>
+
+      <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(61, 121, 118, 0.644);">
+        <mat-card class="example-card"
+          style="background-color: rgb(61, 121, 118);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white;font-size: large;margin-top: 7px;">Total Bids Count : {{count}}</h4>
+        </mat-card>
+      </mat-card>
+
+
+      <!-- <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(177, 139, 36, 0.377)">
+        <mat-card class="example-card"
+          style="background-color: rgb(177, 139, 36);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white; font-size: large;margin-top: 7px;">Total Bidder : {{bCount}}</h4>
+        </mat-card>
+      </mat-card>
+
+      <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(212, 180, 92, 0.377);">
+        <mat-card class="example-card"
+          style="background-color: rgb(212, 180, 92);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white; font-size: large;margin-top: 7px;">Total Auctioner : {{aCount}} </h4>
+        </mat-card>
+      </mat-card>
+
+      <mat-card class="example-card" style="width: 270px;height: 50px; background-color: rgba(236, 202, 110, 0.377);">
+        <mat-card class="example-card"
+          style="background-color: rgb(236, 203, 110);position: absolute; top: -5px;left: -10px; width: 230px; height: 35px;">
+          <h4 style="color: white;font-size: large;margin-top: 7px;">Total Bids Count : {{count}}</h4>
+        </mat-card>
+      </mat-card> -->
+
+      
+      <button mat-flat-button
+        style="width: 180px;height: 50px; margin-top: 45px;background-color: #008080;color: white;"
+        (click)="ShowAdmin()">
+        <mat-icon class="example-icon" style="color: white;" aria-hidden="false" aria-label="Admin">
+          account_circle
+        </mat-icon><b>Show Profile</b>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div fxLayout="row">
+  <mat-card *ngIf="showChart == 'chart'" style="width: 500px;">
+    <div [chart]="chart"></div>
+  </mat-card>
+  <mat-card *ngIf="showChart == 'chart'" style="width: 500px;">
+    <div [chart]="chart1"></div>
+  </mat-card>
+</div>
+<div class="showAdmin" *ngIf="showChart == 'form'">
+  <mat-card>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.name}}" readonly>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.address}}" readonly>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.email}}" readonly>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.gender}}" readonly>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.mobileNumber}}" readonly>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Input" value="{{userData.username}}" readonly>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button (click)="hideForm()" fxLayoutAlign="end" style="background-color: #53341f; color: white; font-size: large; margin-left: 25px;">
+      Cancel
+    </button>
+  </mat-card>
+</div>

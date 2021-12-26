@@ -1,0 +1,65 @@
+<mat-toolbar style="position: fixed; background-color:  #854a10;">
+    <mat-toolbar-row>
+        <button fxShow.xs="false" fxShow.sm="false" fxShow.md="true" fxShow.lg="true" mat-button routerLink=""
+            routerLinkActive="active">
+            <img class="logo-img" src="assets/images/logo3.PNG">
+        </button>
+        <span class="example-spacer"></span>
+        <button fxShow.xs="true" fxShow.sm="true" fxShow.md="true" fxShow.lg="true" mat-button routerLink="/register"
+            routerLinkActive="active" style="color:white;">
+            <mat-icon>account_circle</mat-icon>
+            Register Account
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <pre>Login here and 
+        be a part of BID...</pre>
+    <mat-card class="example-card mat-elevation-z24">
+        <mat-card-header fxLayoutAlign="center center">
+            <mat-card-title><h4 style="font-size: xx-large; margin-top: 20px;margin-bottom: 40px; color: #075844;">Account Login</h4></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <form [formGroup]="fgLogin" fxLayout="column" fxLayoutAlign="center center" class="box">
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="Username" formControlName="username" required>
+                    <mat-error
+                        *ngIf="fgLogin.controls['username'].invalid && (fgLogin.controls['username'].dirty || fgLogin.controls['username'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgLogin.controls['username'].errors ?fgLogin.controls['username'].errors.required : '' ">
+                            Username is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput type="password" [type]="hide ? 'password' : 'text'" placeholder="Password"
+                        formControlName="password" autocomplete="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error
+                        *ngIf="fgLogin.controls['password'].invalid && (fgLogin.controls['password'].dirty || fgLogin.controls['password'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgLogin.controls['password'].errors ? fgLogin.controls['password'].errors.required : '' ">
+                            Password is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <br />
+                <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+                    <button mat-flat-button style="background-color: #854a10; color: white; font-size: x-large;" [disabled]="!fgLogin.valid"
+                        (click)="submit()">Login</button>
+                </div>
+            </form>
+            <br>
+            <span style="text-align: center;">
+                <p>Do You Have Account? <a href="/register">Create Your Account</a></p>
+            </span>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

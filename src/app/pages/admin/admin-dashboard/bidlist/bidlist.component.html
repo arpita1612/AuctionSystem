@@ -1,0 +1,44 @@
+<div>
+    <mat-card>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bidder Name </th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="productname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                    <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bidAmount">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bid Amounts </th>
+                    <td mat-cell *matCellDef="let row"> {{row.bidAmount}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bidTime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bid Date </th>
+                    <td mat-cell *matCellDef="let row"> {{row.bidTime | date:'yyyy-MM-dd'}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+                <div *ngIf="bidData.length == 0">
+                    <p>No Data Found!</p>
+                </div>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </mat-card>
+</div>

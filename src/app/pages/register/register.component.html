@@ -1,0 +1,155 @@
+<mat-toolbar style="background-color: #854a10">
+    <mat-toolbar-row>
+        <button fxShow.xs="false" fxShow.sm="false" fxShow.md="true" fxShow.lg="true" mat-button routerLink=""
+            routerLinkActive="active">
+            <img class="logo-img" src="assets/images/logo3.PNG">
+        </button>
+        <span class="example-spacer"></span>
+        <button style="color: white;" fxShow.xs="true" fxShow.sm="true" fxShow.md="true" fxShow.lg="true" mat-button
+            routerLink="/login" routerLinkActive="active">
+            <mat-icon style="color: white;">lock</mat-icon>
+            Login
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container " fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <mat-card class="example-card mat-elevation-z24">
+        <mat-card-header fxLayoutAlign="center center">
+            <mat-card-title>
+                <h4 style="font-size: xx-large; margin-top: 20px;margin-bottom: 40px; color: #075844;">Create Your
+                    Account</h4>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="fgRegister" fxLayoutAlign="center center" fxLayout="column">
+                <h4 class="group-heading" style="width: 400px; height: 25px;">Account Details</h4>
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="name" formControlName="name" required>
+                    <mat-error
+                        *ngIf="fgRegister.controls['name'].invalid && (fgRegister.controls['name'].dirty || fgRegister.controls['name'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['name'].errors ? fgRegister.controls['name'].errors.required : '' ">
+                            Name is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <mat-select placeholder="Select" formControlName="role">
+                        <mat-option value="auctioner">Auctionar</mat-option>
+                        <mat-option value="bidder">Bidder</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="fgRegister.controls['role'].invalid && (fgRegister.controls['role'].dirty || fgRegister.controls['role'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['role'].errors ? fgRegister.controls['role'].errors.required : ''">
+                            Role is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+                        formControlName="password">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error
+                        *ngIf="fgRegister.controls['password'].invalid && (fgRegister.controls['password'].dirty || fgRegister.controls['password'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['password'].errors ? fgRegister.controls['password'].errors.required : '' ">
+                            Password is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="Username" formControlName="username" required>
+                    <mat-error
+                        *ngIf="fgRegister.controls['username'].invalid && (fgRegister.controls['username'].dirty || fgRegister.controls['username'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['username'].errors ?fgRegister.controls['username'].errors.required : '' ">
+                            Username is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <h4 class="group-heading" style="width: 400px; height: 25px;">Personal Details</h4>
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="Email ID" formControlName="email" required>
+                    <mat-error
+                        *ngIf="fgRegister.controls['email'].invalid && (fgRegister.controls['email'].dirty || fgRegister.controls['email'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['email'].errors ? fgRegister.controls['email'].errors.required : '' ">
+                            Email is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput placeholder="Address" formControlName="address" required>
+                    <mat-error
+                        *ngIf="fgRegister.controls['address'].invalid && (fgRegister.controls['address'].dirty || fgRegister.controls['address'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['address'].errors ? fgRegister.controls['address'].errors.required : '' ">
+                            Address is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-radio-group formControlName="gender" required>
+                    <label style=" font-size:larger; left: 45px;  position: absolute;">Gender</label>
+                    <mat-radio-button value="male">Male</mat-radio-button> &nbsp;
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                    <mat-error
+                        *ngIf="fgRegister.controls['gender'].invalid && (fgRegister.controls['gender'].dirty || fgRegister.controls['gender'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['gender'].errors ? fgRegister.controls['gender'].errors.required : '' ">
+                            Gender is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-radio-group>
+                <br>
+                <mat-form-field appearance="outline" class="form">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error
+                        *ngIf="fgRegister.controls['DOB'].invalid && (fgRegister.controls['DOB'].dirty || fgRegister.controls['DOB'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['DOB'].errors ? fgRegister.controls['DOB'].errors.required : '' ">
+                            Birth Date is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form">
+                    <span matPrefix>+91 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Telephone" formControlName="mobileNumber" required>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error
+                        *ngIf="fgRegister.controls['mobileNumber'].invalid && (fgRegister.controls['mobileNumber'].dirty || fgRegister.controls['mobileNumber'].touched)"
+                        class="alert" style="margin: 0px !important;padding: 0px;">
+                        <mat-error
+                            *ngIf="fgRegister.controls['mobileNumber'].errors ? fgRegister.controls['mobileNumber'].errors.required: '' ">
+                            Mobile number is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+                    <button mat-flat-button style="background-color: #854a10; color: white; font-size: x-large;"
+                        [disabled]="!fgRegister.valid" (click)="onSubmit()">
+                        Register</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

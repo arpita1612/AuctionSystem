@@ -1,0 +1,338 @@
+<!-- <div class="auction-container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Auction</span>
+      <button mat-button (click)="addProduct()">Add Product</button>
+      <button mat-button (click)="showProducts()">My Products</button>
+      <span class="example-spacer"></span>
+      <span>
+        <button mat-icon-button (click)="editUser()">
+          <mat-icon>account_circle</mat-icon> Profile
+        </button> &nbsp; &nbsp;&nbsp;&nbsp;
+        <button mat-icon-button (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon> Logout
+        </button>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 20px;"
+    *ngIf="showForm">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Add your products</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="fgAddProduct" fxLayout="column">
+          <h4 class="group-heading">Product Details</h4>
+          <mat-form-field>
+            <input matInput placeholder="Enter product name" formControlName="productname" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <textarea matInput placeholder="Enter product details" formControlName="productdiscription"></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Enter product type" formControlName="producttype" required>
+          </mat-form-field>
+
+          <mat-form-field  >
+            <input matInput placeholder="Enter product amount" type="number" class="example-right-align"
+              formControlName="productprice">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput readonly name="name" />
+            <input #fileInput type="file" id="filePicker" (change)="handleFileSelect($event)" accept=".jpeg">
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+            <button mat-flat-button color="primary" [disabled]="!fgAddProduct.valid" (click)="onSubmit()">
+              Submit</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 20px;"
+    *ngIf="!showForm && editForm">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Edit your Account Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="editAuctioner" fxLayout="column">
+          <h4 class="group-heading">Account Details</h4>
+          <mat-form-field>
+            <input matInput placeholder="name" value="{{userData.name}}" formControlName="name" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Select" formControlName="role" value="{{userData.role}}">
+              <mat-option value="auctioner">Auctionar</mat-option>
+              <mat-option value="bidder">Bidder</mat-option>
+              <mat-option value="admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field  >
+            <input matInput placeholder="Username" formControlName="username" value="{{userData.username}}" required>
+          </mat-form-field>
+
+          <h4 class="group-heading">Personal Details</h4>
+          <mat-form-field  >
+            <input matInput placeholder="Email ID" formControlName="email" value="{{userData.email}}" required>
+          </mat-form-field>
+
+          <mat-form-field  >
+            <input matInput placeholder="Address" formControlName="address" value="{{userData.address}}" required>
+          </mat-form-field>
+
+          <mat-radio-group formControlName="gender" value="{{userData.gender}}" required>
+            <label>Gender</label><br />
+            <mat-radio-button value="male">Male</mat-radio-button> &nbsp;
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB"
+              value="{{userData.DOB}}">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field  >
+            <span matPrefix>+91 &nbsp;</span>
+            <input type="tel" matInput placeholder="Telephone" formControlName="mobileNumber"
+              value="{{userData.mobileNumber}}" required>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+            <button mat-flat-button color="primary" [disabled]="!editAuctioner.valid" (click)="onUpdate()">
+              Edit Auctioner</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutGap="7px" style="margin: 5px 7px 5px 7px;" *ngIf="!showForm && !editForm">
+    <app-shared-product fxFlex.lg="24" fxFlex.md="24" fxFlex.sm="55" fxFlex.xs="48" *ngFor="let p of product"
+      [product]="p" role="auctioner">
+    </app-shared-product>
+  </div>
+</div> -->
+
+
+
+<mat-sidenav-container class="container-sidenav" style="width: 100%; background-color: whitesmoke;">
+  <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top" style="background-color: whitesmoke;">
+    <div class="my-2" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div class="with-bg"></div>
+      <div>
+        <a style="text-align: center;">
+          <h3 style="color: #3d2813; font-size: 30px; margin: 13px;">Auctioner</h3>
+          <!-- <img class="logo-img" src="assets/images/new-logo.jpeg"
+                      style="margin: 2px; padding: 1px; object-fit: cover;"> -->
+        </a>
+      </div>
+    </div>
+    <div class="mt-3">
+      <mat-accordion multi="true" [displayMode]="displayMode">
+        <mat-nav-list (click)="addProduct()">
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #53341f;" matPrefix>monetization_on</mat-icon>&nbsp;
+            Add Products
+          </a>
+        </mat-nav-list>
+        <mat-nav-list (click)="showProducts()">
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #53341f;" matPrefix>shopping_basket</mat-icon>&nbsp;
+            Show Products
+          </a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a routerLinkActive="active" mat-list-item class="ml-2" style="font-size:15px;">
+            <mat-icon style="color: #9e7230;" matPrefix>monetization_on</mat-icon>&nbsp;
+            You Earn &nbsp;&nbsp;&nbsp;&nbsp; : {{userData.bidcoin}}
+          </a>
+        </mat-nav-list>
+      </mat-accordion>
+
+      <mat-nav-list>
+        <a mat-list-item class="ml-2" style="font-size:15px;" (click)="logout()">
+          <mat-icon color="warn" matPrefix>power_settings_new</mat-icon>&nbsp;Logout
+        </a>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="container1">
+    <span class="example-spacer"></span>
+    <mat-toolbar style="background-color: #854a10;">
+      <mat-toolbar-row>
+        <button style="color: white;" mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="true">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <span>Auction</span> -->
+        <!-- <button mat-button (click)="addProduct()">Add Product</button>
+          <button mat-button (click)="showProducts()">My Products</button> -->
+        <span class="example-spacer"></span>
+        <span>
+          <button mat-icon-button (click)="editUser()" style="background-color: #854a10; color: white;">
+            <mat-icon>account_circle</mat-icon> Profile
+          </button> &nbsp; &nbsp;&nbsp;&nbsp;
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 20px;"
+      *ngIf="showForm">
+      <mat-card class="example-card mat-elevation-z24">
+        <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title ><h4 style="font-size: xx-large; margin-top: 30px;margin-bottom: 30px; color: #075844;">Add Product</h4></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="fgAddProduct" fxLayoutAlign="center center"  fxLayout="column">
+            <h4 class="group-heading" style="width: 400px; height: 25px;">Product Details</h4>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="Enter product name*" formControlName="productname" required>
+              <mat-error
+              *ngIf="fgAddProduct.controls['productname'].invalid && (fgAddProduct.controls['productname'].dirty || fgAddProduct.controls['productname'].touched)"
+              class="alert" style="margin: 0px !important;padding: 0px;">
+              <mat-error
+                  *ngIf="fgAddProduct.controls['productname'].errors ? fgAddProduct.controls['productname'].errors.required : '' ">
+                  Product Name is required!
+              </mat-error>
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <textarea matInput placeholder="Enter product details*" formControlName="productdiscription"></textarea>
+              <mat-error
+              *ngIf="fgAddProduct.controls['productdiscription'].invalid && (fgAddProduct.controls['productdiscription'].dirty || fgAddProduct.controls['productdiscription'].touched)"
+              class="alert" style="margin: 0px !important;padding: 0px;">
+              <mat-error
+                  *ngIf="fgAddProduct.controls['productdiscription'].errors ? fgAddProduct.controls['productdiscription'].errors.required : '' ">
+                  Product details are required!
+              </mat-error>
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="Enter product type*" formControlName="producttype" required>
+              <mat-error
+              *ngIf="fgAddProduct.controls['producttype'].invalid && (fgAddProduct.controls['producttype'].dirty || fgAddProduct.controls['producttype'].touched)"
+              class="alert" style="margin: 0px !important;padding: 0px;">
+              <mat-error
+                  *ngIf="fgAddProduct.controls['producttype'].errors ? fgAddProduct.controls['producttype'].errors.required : '' ">
+                  Product type is required!
+              </mat-error>
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form" >
+              <input matInput placeholder="Enter product amount" type="number" class="example-right-align"
+                formControlName="productprice">
+              <span matPrefix>Rs.&nbsp;</span>
+              <span matSuffix>.00</span>
+              <mat-error
+              *ngIf="fgAddProduct.controls['productprice'].invalid && (fgAddProduct.controls['productprice'].dirty || fgAddProduct.controls['productprice'].touched)"
+              class="alert" style="margin: 0px !important;padding: 0px;">
+              <mat-error
+                  *ngIf="fgAddProduct.controls['productprice'].errors ? fgAddProduct.controls['productprice'].errors.required : '' ">
+                  Product Price is required!
+              </mat-error>
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <input matInput readonly name="name" />
+              <input #fileInput type="file" id="filePicker" (change)="handleFileSelect($event)" accept=".jpeg">
+            </mat-form-field>
+            <br>
+            <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+              <button mat-flat-button style="background-color: #854a10; color: white; font-size: x-large;" [disabled]="!fgAddProduct.valid"
+                (click)="onSubmit()">
+                Submit</button>
+            </div>
+           
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center" style="margin-top: 20px;"
+      *ngIf="!showForm && editForm">
+      <mat-card class="example-card1 mat-elevation-z24">
+        <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title><h4 style="font-size: xx-large; margin-top: 20px;margin-bottom: 40px; color: #075844;">Edit your Account Details</h4></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="editAuctioner" fxLayoutAlign="center center" fxLayout="column">
+            <h4 class="group-heading" style="width: 400px; height: 25px;">Account Details</h4>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput placeholder="name" value="{{userData.name}}" formControlName="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form">
+              <mat-select placeholder="Select" formControlName="role" value="{{userData.role}}">
+                <mat-option value="auctioner">Auctionar</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form" >
+              <input matInput placeholder="Username" formControlName="username" value="{{userData.username}}" required>
+            </mat-form-field>
+
+            <h4 class="group-heading" style="width: 400px; height: 25px;">Personal Details</h4>
+            <mat-form-field appearance="outline" class="form" >
+              <input matInput placeholder="Email ID" formControlName="email" value="{{userData.email}}" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form" >
+              <input matInput placeholder="Address" formControlName="address" value="{{userData.address}}" required>
+            </mat-form-field>
+
+            <mat-radio-group formControlName="gender" value="{{userData.gender}}" required>
+              <label style=" font-size:larger; left: 45px;  position: absolute;">Gender</label>
+              <mat-radio-button value="male">Male</mat-radio-button> &nbsp;
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <mat-form-field appearance="outline" class="form">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB"
+                value="{{userData.DOB}}">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" class="form">
+              <span matPrefix>+91 &nbsp;</span>
+              <input type="tel" matInput placeholder="Telephone" formControlName="mobileNumber"
+                value="{{userData.mobileNumber}}" required>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40">
+              <button mat-flat-button style="background-color: #854a10; color: white; font-size: x-large;" [disabled]="!editAuctioner.valid"
+                (click)="onUpdate()">
+                Update Auctioner</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="7px"  *ngIf="!showForm && !editForm">
+      <app-shared-product fxFlex.lg="32" fxFlex.md="32" fxFlex.sm="48" fxFlex.xs="48" *ngFor="let p of product"
+        [product]="p" role="auctioner">
+      </app-shared-product>
+    </div>
+    <br>
+  </mat-sidenav-content>
+</mat-sidenav-container>
